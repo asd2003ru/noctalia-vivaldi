@@ -1,0 +1,490 @@
+/* ==========================================================================
+ * Noctalia -> Vivaldi UI theme
+ * --------------------------------------------------------------------------
+ * GENERATED FILE - DO NOT EDIT.
+ * This file is rendered automatically by the Noctalia template engine every
+ * time the Noctalia palette changes.
+ *
+ *   Source template : templates/vivaldi.css
+ *   Project         : noctalia-vivaldi
+ *   Variant         : {{ mode }}
+ *
+ * Manual edits are overwritten on the next palette change. To add your own
+ * tweaks, drop an extra `*.css` file next to this one: Vivaldi loads every
+ * `.css` file of the configured Custom UI Modifications directory, and files
+ * are loaded in alphabetical order, so a name that sorts after this one
+ * (for example `zz-local-tweaks.css`) wins.
+ * --------------------------------------------------------------------------
+ * noctalia-vivaldi:generated v1
+ * ========================================================================== */
+
+/* --------------------------------------------------------------------------
+ * 1. Noctalia palette
+ *    Noctalia/Material 3 role -> generic --noctalia-* variables.
+ *    These are the only values read from the palette; everything below is
+ *    derived from them with CSS `color-mix()`, which keeps every shade
+ *    consistent in light and dark palettes without any per-mode branch.
+ * -------------------------------------------------------------------------- */
+:root,
+html,
+body,
+#browser {
+  --noctalia-mode: {{ mode }};
+
+  /* Surfaces */
+  --noctalia-bg: {{ colors.surface.default.hex }};
+  --noctalia-bg-lowest: {{ colors.surface_container_lowest.default.hex }};
+  --noctalia-bg-low: {{ colors.surface_container_low.default.hex }};
+  --noctalia-bg-container: {{ colors.surface_container.default.hex }};
+  --noctalia-bg-high: {{ colors.surface_container_high.default.hex }};
+  --noctalia-bg-highest: {{ colors.surface_container_highest.default.hex }};
+  --noctalia-bg-dim: {{ colors.surface_dim.default.hex }};
+  --noctalia-bg-bright: {{ colors.surface_bright.default.hex }};
+
+  /* Text */
+  --noctalia-fg: {{ colors.on_surface.default.hex }};
+  --noctalia-fg-muted: {{ colors.on_surface_variant.default.hex }};
+  --noctalia-fg-alt: {{ colors.surface_variant.default.hex }};
+
+  /* Lines */
+  --noctalia-outline: {{ colors.outline.default.hex }};
+  --noctalia-outline-variant: {{ colors.outline_variant.default.hex }};
+
+  /* Accent (selection, focus, primary controls) */
+  --noctalia-accent: {{ colors.primary.default.hex }};
+  --noctalia-on-accent: {{ colors.on_primary.default.hex }};
+  --noctalia-accent-container: {{ colors.primary_container.default.hex }};
+  --noctalia-on-accent-container: {{ colors.on_primary_container.default.hex }};
+
+  /* Hover (the palette's own hover / interactive-highlight role). Noctalia's
+   * shell paints every button and tab hover with `ColorRole::Hover`, so it is
+   * read from the palette instead of being derived from the surfaces:
+   * wallpaper-generated palettes set it to `tertiary` (`setGeneratedHoverTokens()`
+   * in the shell), while fixed and community palettes carry their own `mHover`. */
+  --noctalia-hover: {{ colors.hover.default.hex }};
+  --noctalia-on-hover: {{ colors.on_hover.default.hex }};
+
+  /* Soft accent (status colours) */
+  --noctalia-soft: {{ colors.secondary_container.default.hex }};
+  --noctalia-on-soft: {{ colors.on_secondary_container.default.hex }};
+
+  /* Tertiary (private window accent, "positive" status) */
+  --noctalia-tertiary: {{ colors.tertiary.default.hex }};
+  --noctalia-on-tertiary: {{ colors.on_tertiary.default.hex }};
+  --noctalia-tertiary-container: {{ colors.tertiary_container.default.hex }};
+  --noctalia-on-tertiary-container: {{ colors.on_tertiary_container.default.hex }};
+
+  /* Error */
+  --noctalia-error: {{ colors.error.default.hex }};
+  --noctalia-on-error: {{ colors.on_error.default.hex }};
+  --noctalia-error-container: {{ colors.error_container.default.hex }};
+  --noctalia-on-error-container: {{ colors.on_error_container.default.hex }};
+
+  /* Inverse surfaces (tooltips, badges) */
+  --noctalia-inverse-surface: {{ colors.inverse_surface.default.hex }};
+  --noctalia-inverse-on-surface: {{ colors.inverse_on_surface.default.hex }};
+  --noctalia-inverse-primary: {{ colors.inverse_primary.default.hex }};
+}
+
+/* --------------------------------------------------------------------------
+ * 2. Vivaldi UI variables
+ *    Vivaldi writes its theme as an inline style attribute on `#browser` and
+ *    derives most shades from --colorBg / --colorFg / --colorHighlightBg /
+ *    --colorAccentBg. Replacing those base variables therefore replaces the
+ *    whole derived ramp with Noctalia colors.
+ *
+ *    `!important` is required because the theme values live in an inline
+ *    style attribute: an author-important declaration beats inline styles
+ *    that are not important.
+ * -------------------------------------------------------------------------- */
+:root,
+html,
+body,
+#browser {
+  /* --- Backgrounds ------------------------------------------------------ */
+  --colorBg: var(--noctalia-bg) !important;
+  --colorWindowBg: var(--noctalia-bg) !important;
+  --browserBackgroundColor: var(--noctalia-bg) !important;
+  --colorBgLight: color-mix(in srgb, var(--noctalia-bg) 95%, var(--noctalia-fg)) !important;
+  --colorBgLighter: color-mix(in srgb, var(--noctalia-bg) 89%, var(--noctalia-fg)) !important;
+  --colorBgLightIntense: color-mix(in srgb, var(--noctalia-bg) 92%, var(--noctalia-fg)) !important;
+  /* The pair Vivaldi paints hover/pressed surfaces, separators and borders
+   * with. It has to be an offset from the surface in the direction the palette
+   * shades in, so it is mixed with `--noctalia-fg`, not with black: on the
+   * dark palette a 6 % black mix is a 1/255 step and every hover, press and
+   * separator drawn from `--colorBgDark`/`--colorBgDarker` stayed invisible
+   * (Material 3 raises a dark surface towards the on-surface colour and
+   * lowers a light one, which is exactly what the foreground mix does). */
+  --colorBgDark: color-mix(in srgb, var(--noctalia-bg) 92%, var(--noctalia-fg)) !important;
+  --colorBgDarker: color-mix(in srgb, var(--noctalia-bg) 84%, var(--noctalia-fg)) !important;
+  --colorBgIntense: var(--noctalia-bg-container) !important;
+  --colorBgIntenser: var(--noctalia-bg-high) !important;
+  --colorBgInverse: var(--noctalia-inverse-surface) !important;
+  --colorBgInverser: var(--noctalia-inverse-surface) !important;
+  --colorBgFaded: color-mix(in srgb, var(--noctalia-bg) 92%, var(--noctalia-fg)) !important;
+  /* Frosted surfaces of translucent Vivaldi themes. The palette is opaque, so
+   * the translucent variants resolve to the plain palette colour instead of
+   * letting the previous theme background show through the UI. */
+  --colorBgAlphaBlur: var(--noctalia-bg) !important;
+  /* Vivaldi builds its state layers from the background colour
+   * (common.css: --colorBgAlphaHeavy/Heavier = --colorBg at 65/25 %) and uses
+   * them for hover and pressed states all over the unified UI - tab hover,
+   * toolbar buttons, extension icons. Since --colorBg *is* the tab bar and
+   * toolbar background here, such a layer would be drawn on top of its own
+   * colour and the states would be invisible. Repaint them from an offset
+   * surface of the palette (same alphas Vivaldi uses) so hover and pressed
+   * stay distinguishable without changing any geometry. */
+  --colorBgAlphaHeavy: color-mix(in srgb, var(--noctalia-bg-high) 65%, transparent) !important;
+  --colorBgAlphaHeavier: color-mix(in srgb, var(--noctalia-bg-high) 25%, transparent) !important;
+  /* Same idea for `--colorBgAlpha` (Vivaldi: `--colorBg` at 90 %), which is
+   * used for the surfaces that are meant to let the page shine through. */
+  --colorBgAlpha: color-mix(in srgb, var(--noctalia-bg) 90%, transparent) !important;
+
+  /* --- Foregrounds ------------------------------------------------------ */
+  --colorFg: var(--noctalia-fg) !important;
+  --colorFgIntense: var(--noctalia-fg) !important;
+  --colorFgFaded: var(--noctalia-fg-muted) !important;
+  /* Vivaldi paints the address bar text and the suggestion labels with
+   * `--colorFgFadedMore` while the window is not focused (a focused window
+   * uses `--colorFg`). At 80 % of the muted foreground the light palette
+   * dropped to 4.5:1 on the address bar and below it on a hovered row of the
+   * suggestion list, so the muted share is 85 % - still clearly a step down
+   * from `--colorFgFaded`, but readable in both modes. */
+  --colorFgFadedMore: color-mix(in srgb, var(--noctalia-fg-muted) 85%, var(--noctalia-bg)) !important;
+  --colorFgFadedMost: color-mix(in srgb, var(--noctalia-fg-muted) 55%, var(--noctalia-bg)) !important;
+  /* State layers Vivaldi derives from the theme in its own engine and writes
+   * back as an inline style on `#browser` (common.css:10/13,18). They are used
+   * as the background of hovered rows, item counters, selected tree rows,
+   * progress tracks and input borders, and - because they arrive inline - they
+   * keep the *previous* Vivaldi theme's colours unless they are re-declared
+   * here. Alphas are Vivaldi's own (foreground 10 %, highlight 10 %/50 %). */
+  --colorFgAlpha: color-mix(in srgb, var(--noctalia-fg) 10%, transparent) !important;
+  /* Vivaldi's `--colorFgDark` is a foreground for borders on chrome that is
+   * already dark; the outline of the palette is exactly that. */
+  --colorFgDark: var(--noctalia-outline) !important;
+
+  /* --- Highlight (selection, focus, active controls) -------------------- */
+  --colorHighlightBg: var(--noctalia-accent) !important;
+  --colorHighlightBgFaded: color-mix(in srgb, var(--noctalia-accent) 80%, var(--noctalia-bg)) !important;
+  --colorHighlightBgDark: var(--noctalia-accent-container) !important;
+  --colorHighlightFg: var(--noctalia-on-accent) !important;
+  --colorHighlightBgAlpha: color-mix(in srgb, var(--noctalia-accent) 10%, transparent) !important;
+  --colorHighlightFgAlpha: color-mix(in srgb, var(--noctalia-on-accent) 50%, transparent) !important;
+  /* Chips drawn *inside* a selected row (the address bar suggestion badge, mail
+   * counters, download pills) are Vivaldi's `--colorHighlightFg` tinted over
+   * the selection colour, with the same colour as their text. Vivaldi's 25 %
+   * (`transparent 75%`) assumes a light selection with a dark foreground, like
+   * its own themes; this palette uses the Material 3 filled pair
+   * (`primary`/`on_primary`), whose foreground is white in light mode, so a
+   * 25 % tint of it lands on a mid tone - white on #538ca4 is only 3.7:1. 12 %
+   * keeps the chip visible and its label at 5.0:1 (light) / 6.3:1 (dark). */
+  --colorHighlightFgAlphaHeavy: color-mix(in srgb, var(--colorHighlightFg) 12%, transparent) !important;
+
+  /* --- Chrome (tab bar, toolbar, raised surfaces) ------------------------
+   * Vivaldi paints the tab bar, the toolbar, the toolbar's *selected* buttons
+   * and - with "colour behind tabs" off - the active tab from this pair.
+   * The Noctalia shell uses two tones for the same jobs: `surface` for the bar
+   * itself and `surface_container` for its capsules, buttons and tabs. Reuse
+   * both, so the browser chrome sits on exactly the same two tones as the
+   * shell instead of a shade of its own. No accent colour is spent on a large
+   * surface - the accent stays reserved for selection/focus. */
+  --colorAccentBg: var(--noctalia-bg-container) !important;
+  --colorAccentBgAlphaBlur: var(--colorAccentBg) !important;
+  --colorAccentBgDark: color-mix(in srgb, var(--colorAccentBg) 92%, var(--noctalia-fg)) !important;
+  --colorAccentBgDarker: color-mix(in srgb, var(--colorAccentBg) 84%, var(--noctalia-fg)) !important;
+  --colorAccentBgFaded: color-mix(in srgb, var(--colorAccentBg) 80%, var(--noctalia-bg)) !important;
+  --colorAccentBgFadedMore: color-mix(in srgb, var(--colorAccentBg) 60%, var(--noctalia-bg)) !important;
+  --colorAccentBgFadedMost: color-mix(in srgb, var(--colorAccentBg) 40%, var(--noctalia-bg)) !important;
+  /* Vivaldi's own alphas for the same three roles (common.css:14-16). Like
+   * `--colorFgAlpha` they arrive as an inline style from the theme engine. */
+  --colorAccentBgAlpha: color-mix(in srgb, var(--colorAccentBgFadedMost) 50%, transparent) !important;
+  --colorAccentBgAlphaHeavy: color-mix(in srgb, var(--colorAccentBgFadedMost) 30%, transparent) !important;
+  --colorAccentFgAlpha: color-mix(in srgb, var(--colorAccentFg) 15%, transparent) !important;
+  --colorAccentBorder: color-mix(in srgb, var(--colorAccentBg) 55%, var(--noctalia-fg)) !important;
+  --colorAccentBorderDark: color-mix(in srgb, var(--colorAccentBg) 30%, var(--noctalia-fg)) !important;
+  --colorAccentFg: var(--noctalia-fg) !important;
+  --colorAccentFgFaded: color-mix(in srgb, var(--noctalia-fg) 85%, var(--colorAccentBg)) !important;
+
+  /* --- Borders ---------------------------------------------------------- */
+  --colorBorder: var(--noctalia-outline-variant) !important;
+  --colorBorderDisabled: color-mix(in srgb, var(--noctalia-outline-variant) 45%, var(--noctalia-bg)) !important;
+  --colorBorderSubtle: color-mix(in srgb, var(--noctalia-outline-variant) 60%, var(--noctalia-bg)) !important;
+  --colorBorderIntense: var(--noctalia-outline) !important;
+
+  /* --- Status -----------------------------------------------------------
+   * Material 3 / Noctalia has no dedicated success and warning roles, so
+   * they are mapped onto the tertiary and secondary container/fg pairs.
+   * Error uses the real error roles.
+   * --------------------------------------------------------------------- */
+  --colorSuccessBg: var(--noctalia-tertiary-container) !important;
+  --colorSuccessFg: var(--noctalia-on-tertiary-container) !important;
+  --colorWarningBg: var(--noctalia-soft) !important;
+  --colorWarningFg: var(--noctalia-on-soft) !important;
+  --colorError: var(--noctalia-error) !important;
+  --colorErrorBg: var(--noctalia-error-container) !important;
+  --colorErrorFg: var(--noctalia-on-error-container) !important;
+  /* Rest of the status/calendar set Vivaldi derives in its engine and writes
+   * inline (see the foreground state layers above): warning text, the error
+   * surface and the translucent status fills, plus the calendar entry colours
+   * of the panel. Alphas are Vivaldi's (10 % for the status fills). */
+  --colorWarning: var(--noctalia-soft) !important;
+  --colorBgError: var(--noctalia-error) !important;
+  --colorSuccessBgAlpha: color-mix(in srgb, var(--colorSuccessBg) 10%, transparent) !important;
+  --colorWarningBgAlpha: color-mix(in srgb, var(--colorWarningBg) 10%, transparent) !important;
+  --colorErrorBgAlpha: color-mix(in srgb, var(--colorErrorBg) 10%, transparent) !important;
+  --colorCalendarBg: var(--noctalia-bg-container) !important;
+  --colorCalendarBgAlpha: color-mix(in srgb, var(--noctalia-bg-container) 50%, transparent) !important;
+  --colorCalendarFg: var(--noctalia-accent) !important;
+  --colorCalendarFgAlpha: color-mix(in srgb, var(--noctalia-accent) 50%, transparent) !important;
+
+  /* --- Flags consumed by Vivaldi's own logic ---------------------------- */
+<* if mode == "dark" *>
+  --isDarkTheme: 1 !important;
+<* else *>
+  --isDarkTheme: 0 !important;
+<* endif *>
+}
+
+/* --------------------------------------------------------------------------
+ * 3. Tab bar
+ *    Vivaldi paints `.tabbar-wrapper` (and the header/footer that hosts it)
+ *    with `--colorTabBar`. Themes with a transparent tab bar do not set that
+ *    variable at all, so the element would keep showing the *theme background
+ *    image* - i.e. the previous theme's colours. Point it at the surface
+ *    colour of the palette, i.e. the colour the Noctalia bar itself uses, so
+ *    the tab strip, the toolbar and the bottom bar form one continuous surface
+ *    together with the bar.
+ * -------------------------------------------------------------------------- */
+#browser.color-behind-tabs-on,
+#browser.color-behind-tabs-off,
+#browser.unified-ui {
+  --colorTabBar: var(--noctalia-bg) !important;
+}
+
+/* Tabs use the same control palette as the tabs of the Noctalia shell itself
+ * (control center tab row, settings sidebar - `ButtonVariant::Tab`):
+ *
+ *   tab strip   surface            (the surface of the bar / panel)
+ *   tab         transparent        (Tab has no fill at rest)
+ *   active tab  primary            (TabActive: fill `primary`, label `on_primary`)
+ *
+ * Vivaldi paints an inactive tab with a scrim of
+ * `--colorImageBg`/`--colorBgDarker` (35-40 %) and, when "colour behind tabs"
+ * is off, with a `--colorBgDarker` shade - both of which land within 1-6/255
+ * of the strip on this palette, i.e. the tabs read as black. Restating them as
+ * `transparent` keeps Noctalia's relation: the strip is one surface and only
+ * the *active* tab is a filled capsule, which also covers translucent tab bars
+ * (the template removes the theme background image, so there is nothing to
+ * blend into). */
+#browser .tab:not(.active) {
+  background-color: transparent !important;
+  color: var(--noctalia-fg) !important;
+}
+
+/* The active tab is the capsule Noctalia fills with `primary` for the current
+ * item, with the matching `on_primary` label. */
+#browser .tab.active {
+  background-color: var(--noctalia-accent) !important;
+  color: var(--noctalia-on-accent) !important;
+}
+
+/* Text on the tab bar: Vivaldi prefers the image-derived foreground colour
+ * when the tab bar is accent coloured, which would be a leftover from the
+ * Vivaldi theme. Use the accent foreground of this palette instead.
+ * (`color` only - no geometry, no icon sizes.) */
+#browser.color-behind-tabs-on .tabbar-wrapper,
+#browser.color-behind-tabs-on.tabs-top #header,
+#browser.color-behind-tabs-on.tabs-bottom #footer {
+  color: var(--colorAccentFg) !important;
+}
+
+/* --------------------------------------------------------------------------
+ * 4. Colours derived from the Vivaldi theme background image
+ *    Vivaldi computes a set of foreground/background colours from the active
+ *    theme background image (`--colorImage*`, one set per image edge) and
+ *    writes them inline on `#browser`. They are used - among other things - as
+ *    the translucent scrim of tabs, hover and press states, and as the tab
+ *    label colour, so they would keep the *previous* theme's look (a light
+ *    theme leaves a light scrim on the tab bar). Map them onto the palette.
+ *
+ *    The alpha values mirror the ones Vivaldi uses (60% / 5% for the
+ *    foreground, 55% / 35% for the background) so the weight of the derived
+ *    states is unchanged. `--colorImageBg` maps to the palette's container
+ *    surface, which keeps Vivaldi's relation of "scrim slightly offset from
+ *    the surface colour" in both light and dark palettes.
+ * -------------------------------------------------------------------------- */
+:root,
+html,
+body,
+#browser {
+  /* palette-derived intermediates (the two alpha steps are not variables
+   * Vivaldi itself defines, so they carry the project's prefix) */
+  --noctalia-image-fg-alpha: color-mix(in srgb, var(--noctalia-fg) 60%, transparent) !important;
+  --noctalia-image-fg-alpha-heavy: color-mix(in srgb, var(--noctalia-fg) 5%, transparent) !important;
+
+  --colorImageFg: var(--noctalia-fg) !important;
+  --colorImageBg: var(--noctalia-bg-container) !important;
+  --colorImageBgAlpha: color-mix(in srgb, var(--noctalia-bg-container) 55%, transparent) !important;
+  --colorImageBgAlphaHeavy: color-mix(in srgb, var(--noctalia-bg-container) 35%, transparent) !important;
+  --colorImageBAlpha: var(--colorImageBgAlphaHeavy) !important;
+
+  --colorImageCenterFg: var(--colorImageFg) !important;
+  --colorImageCenterFgAlpha: var(--noctalia-image-fg-alpha) !important;
+  --colorImageCenterFgAlphaHeavy: var(--noctalia-image-fg-alpha-heavy) !important;
+  --colorImageTopFg: var(--colorImageFg) !important;
+  --colorImageTopFgAlpha: var(--noctalia-image-fg-alpha) !important;
+  --colorImageTopFgAlphaHeavy: var(--noctalia-image-fg-alpha-heavy) !important;
+  --colorImageRightFg: var(--colorImageFg) !important;
+  --colorImageRightFgAlpha: var(--noctalia-image-fg-alpha) !important;
+  --colorImageRightFgAlphaHeavy: var(--noctalia-image-fg-alpha-heavy) !important;
+  --colorImageBottomFg: var(--colorImageFg) !important;
+  --colorImageBottomFgAlpha: var(--noctalia-image-fg-alpha) !important;
+  --colorImageBottomFgAlphaHeavy: var(--noctalia-image-fg-alpha-heavy) !important;
+  --colorImageLeftFg: var(--colorImageFg) !important;
+  --colorImageLeftFgAlpha: var(--noctalia-image-fg-alpha) !important;
+  --colorImageLeftFgAlphaHeavy: var(--noctalia-image-fg-alpha-heavy) !important;
+
+  --colorImageCenterBg: var(--colorImageBg) !important;
+  --colorImageCenterBgAlpha: var(--colorImageBgAlpha) !important;
+  --colorImageCenterBgAlphaHeavy: var(--colorImageBgAlphaHeavy) !important;
+  --colorImageTopBg: var(--colorImageBg) !important;
+  --colorImageTopBgAlpha: var(--colorImageBgAlpha) !important;
+  --colorImageTopBgAlphaHeavy: var(--colorImageBgAlphaHeavy) !important;
+  --colorImageRightBg: var(--colorImageBg) !important;
+  --colorImageRightBgAlpha: var(--colorImageBgAlpha) !important;
+  --colorImageRightBgAlphaHeavy: var(--colorImageBgAlphaHeavy) !important;
+  --colorImageBottomBg: var(--colorImageBg) !important;
+  --colorImageBottomBgAlpha: var(--colorImageBgAlpha) !important;
+  --colorImageBottomBgAlphaHeavy: var(--colorImageBgAlphaHeavy) !important;
+  --colorImageLeftBg: var(--colorImageBg) !important;
+  --colorImageLeftBgAlpha: var(--colorImageBgAlpha) !important;
+  --colorImageLeftBgAlphaHeavy: var(--colorImageBgAlphaHeavy) !important;
+}
+
+/* --------------------------------------------------------------------------
+ * 5. Browser background image
+ *    Vivaldi paints the active theme's background colour + background image
+ *    behind the chrome and keeps them visible in the areas the UI does not
+ *    cover (window edges, the band between the toolbars and the page, the tab
+ *    bar of themes with a transparent tab bar). Both are written as an inline
+ *    `style` on `#browser`, i.e. they survive the palette change and show the
+ *    *previous* theme's colours - the background colour has to be overridden
+ *    as a property, not through `--browserBackgroundColor` alone.
+ *
+ *    This only affects the browser UI document. The image variables
+ *    (`--browserBackgroundImage`, `--browserBlurredImage`) and the colour
+ *    variable are left intact (Vivaldi's internal pages keep using
+ *    `--browserBackgroundColor`), so the image can be brought back behind the
+ *    chrome from a later `*.css` file with:
+ *
+ *      #browser {
+ *        background-image: var(--browserBlurredImage, var(--browserBackgroundImage)) !important;
+ *      }
+ * -------------------------------------------------------------------------- */
+#browser {
+  background-color: var(--browserBackgroundColor) !important;
+  background-image: none !important;
+}
+
+/* --------------------------------------------------------------------------
+ * 6. Private windows
+ *    Vivaldi puts its private-window badge - a `div.UrlBar-PrivateWindowIndicator`
+ *    (mask icon + "Private"/'Приватный') - in the address bar toolbar of
+ *    private windows and nowhere else, which lets us scope a distinct palette
+ *    to private windows only. `:has()` on #browser is supported since
+ *    Chromium 105, i.e. in every supported Vivaldi build.
+ *
+ *    Only the two surface steps are redefined here: private windows are marked
+ *    by the deeper surface tones, which leaves every role colour - including
+ *    `hover` and `primary` - the one Noctalia uses everywhere. (An accent swap
+ *    cannot be combined with the palette's own `hover` role on this palette:
+ *    `hover` *is* `tertiary`, so an active tab and a hovered tab would end up
+ *    in the same colour.)
+ *
+ *    Every Vivaldi variable above is declared as var(--noctalia-...), so it
+ *    follows along and the window keeps Vivaldi's private theme (Vivaldi9)
+ *    untouched otherwise.
+ *
+ *    The badge itself needs no rule: it is a transparent pill that inherits
+ *    --colorFg, which the palette remapping already follows.
+ * -------------------------------------------------------------------------- */
+#browser:has(.UrlBar-PrivateWindowIndicator) {
+  --noctalia-bg: var(--noctalia-bg-dim);
+  --noctalia-bg-container: var(--noctalia-bg-low);
+}
+
+/* --------------------------------------------------------------------------
+ * 7. Hover and pressed states (tabs, toolbar buttons)
+ *    Both states are read from the palette roles Noctalia's shell paints its
+ *    own controls with (`src/ui/controls/button.cpp`):
+ *
+ *      hover    fill `hover`, label `on_hover`      (ButtonVariant::Tab)
+ *      pressed  fill `surface_container`            (ButtonVariant::Tab)
+ *      selected fill `primary`, label `on_primary`  (ButtonVariant::TabActive)
+ *
+ *    `hover` is a role of its own - "Hover and interactive highlight
+ *    background" in the Noctalia theming docs, and `tertiary` on
+ *    wallpaper-generated palettes - so a pointer feedback is this palette's
+ *    highlight colour instead of an untinted grey. Vivaldi's own values are
+ *    barely visible on an opaque palette anyway: an inactive tab is hovered
+ *    with the image scrim
+ *    (`#browser.unified-ui-transparent .tab-wrapper:hover .tab:not(.active)` →
+ *    `--colorImageBg` at 70 % against 30 % at rest, a 4/255 step) and toolbar
+ *    buttons with `--colorBgDark`, a 1-2/255 step.
+ *
+ *    Colours only - tab geometry, hit areas and radii stay Vivaldi's.
+ *
+ *    The rules deliberately name `.tab-wrapper:hover .tab` *and*
+ *    `.tab:hover`: Vivaldi has separate rules for both, and a real pointer
+ *    matches both.
+ * -------------------------------------------------------------------------- */
+
+#browser .tab-wrapper:hover .tab:not(.active),
+#browser .tab:not(.active):hover {
+  background-color: var(--noctalia-hover) !important;
+  color: var(--noctalia-on-hover) !important;
+}
+
+/* The wrapper variant is repeated so that the pressed tone also wins over the
+ * hover rule above, which is one class more specific than `.tab:active`. */
+#browser .tab-wrapper:hover .tab:not(.active):active,
+#browser .tab:not(.active):active {
+  background-color: var(--noctalia-bg-container) !important;
+  color: var(--noctalia-fg) !important;
+}
+
+/* The active tab is the `primary` capsule, and `primary` is also its hover
+ * state in Noctalia (`TabActive` keeps `primary`/`on_primary` while hovered),
+ * so the pointer must not repaint it. */
+#browser .tab-wrapper:hover .tab.active,
+#browser .tab.active:hover {
+  background-color: var(--noctalia-accent) !important;
+  color: var(--noctalia-on-accent) !important;
+}
+
+/* Toolbar buttons (address bar, panel toggles, extension icons) use the same
+ * roles; their icons are SVG paths with `fill: currentColor`, so the label
+ * colour reaches them. `button-pressed` is Vivaldi's sticky "on" state, i.e.
+ * Noctalia's selected control; the flat rest state stays Vivaldi's, exactly
+ * like Noctalia's own icon-sized buttons, which have no fill until hovered
+ * (`Tab`/`Ghost`). */
+#browser .button-toolbar > button:hover {
+  background-color: var(--noctalia-hover) !important;
+  color: var(--noctalia-on-hover) !important;
+}
+
+#browser .button-toolbar > button:active {
+  background-color: var(--noctalia-bg-container) !important;
+  color: var(--noctalia-fg) !important;
+}
+
+#browser .button-toolbar > button.button-pressed {
+  background-color: var(--noctalia-accent) !important;
+  color: var(--noctalia-on-accent) !important;
+}
+
+/* --------------------------------------------------------------------------
+ * 8. Colours only - no geometry.
+ *    --radius*, paddings, tab bar position and panel sizes are intentionally
+ *    left to the active Vivaldi theme.
+ * -------------------------------------------------------------------------- */

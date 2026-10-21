@@ -1,0 +1,25 @@
+# ============================================================================
+# noctalia-vivaldi - Noctalia template descriptor
+# ----------------------------------------------------------------------------
+# Noctalia reads this file from its community template cache,
+#
+#     ${XDG_STATE_HOME:-~/.local/state}/noctalia/community-templates/vivaldi/
+#
+# and shows the entry as "Vivaldi" (category: browser) in
+# Settings -> Templates, next to the bundled templates such as Alacritty or Qt.
+# Enable it there once: Noctalia then renders templates/vivaldi.css with the
+# active palette into `output_path` every time the palette changes.
+#
+# `$XDG_CONFIG_HOME` is resolved by Noctalia itself (XDG Base Directory
+# specification), so this file contains no machine-specific absolute path.
+#
+# scripts/install.sh installs this file together with vivaldi.css.
+# ============================================================================
+
+[catalog.vivaldi]
+name = "Vivaldi"
+category = "browser"
+
+[templates.vivaldi]
+input_path = "vivaldi.css"
+output_path = "$XDG_CONFIG_HOME/noctalia-vivaldi/css/noctalia.css"
