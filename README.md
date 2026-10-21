@@ -10,26 +10,39 @@ Verified on: Noctalia 5.3.0 · Vivaldi 8.2.4133.89 · Linux/Niri.
 
 ## Installation
 
+You need Git, Python 3, Noctalia and Vivaldi. Python is used by the installer to
+read Vivaldi's settings and write Noctalia's template cache; Noctalia renders
+the CSS itself. Python 3.11 or newer also lets the scripts read Noctalia's
+settings to report whether the template is enabled. Clone the repository and
+run the installer:
+
 ```bash
-cd ~/Projects/noctalia-vivaldi
+git clone https://github.com/asd2003ru/noctalia-vivaldi.git
+cd noctalia-vivaldi
 scripts/install.sh
 ```
 
-`install.sh` is idempotent, needs no `sudo` and never writes to the Vivaldi
-profile. It registers the stylesheet as the “Vivaldi” entry in Noctalia's
-template cache and prints what is still missing. Two one-time steps remain, both
-outside this repository:
+`install.sh` is idempotent and needs no `sudo`. It copies the “Vivaldi” template
+into Noctalia's template cache, then prints the CSS output directory and the
+remaining setup steps. It reads Vivaldi's settings to reuse an existing Custom
+UI Modifications directory, but does not change the Vivaldi profile.
 
-1. **Enable the template in Noctalia** – *Settings → Templates → “Vivaldi”*
-   (or `noctalia msg settings-open templates`).
-2. **Point Vivaldi at the generated CSS** – *Settings → Appearance → Custom UI
-   Modifications → Select Folder…* → `~/.config/noctalia-vivaldi/css`, then
-   restart Vivaldi. If that block does not exist, enable the `VivaldiCssMods`
-   flag on `vivaldi://experiments/` first, restart Vivaldi once and repeat this
-   step.
+Finish setup in this order:
 
-Install options: `--output DIR` renders the CSS somewhere else, `--dry-run`
-previews, `--help` lists everything.
+1. **Enable the template in Noctalia:** *Settings → Templates → “Vivaldi”*
+   (open it with `noctalia msg settings-open templates`).
+2. **Generate the first stylesheet:** run `noctalia msg templates-apply`.
+   This creates `noctalia.css` in the output directory printed by the installer.
+3. **Select that directory in Vivaldi:** *Settings → Appearance → Custom UI
+   Modifications → Select Folder…*. The default is
+   `~/.config/noctalia-vivaldi/css`; use the directory printed by the installer
+   if it differs. If the Custom UI Modifications setting is missing, enable
+   `VivaldiCssMods` at `vivaldi://experiments/`, restart Vivaldi, then select
+   the directory. Restart Vivaldi after selecting it.
+
+To choose another output directory, run `scripts/install.sh --output /absolute/path`.
+Use `scripts/install.sh --dry-run` to preview installation or `--help` for all
+options.
 
 ## Recommended settings
 
@@ -60,13 +73,16 @@ The styling lives in `templates/vivaldi.css`; edit it and run
 ## Verify / remove
 
 ```bash
-scripts/check.sh        # files, descriptor, rendered CSS, Vivaldi setting
-scripts/uninstall.sh    # removes only what this project installed
+scripts/check.sh        # inspect the template, rendered CSS and Vivaldi setting
+scripts/uninstall.sh    # remove the installed template and generated CSS
 ```
 
 `check.sh` cannot tell whether Vivaldi has *loaded* the CSS – that is only
-visible in the browser. `uninstall.sh` keeps the CSS directory when other mods
-live in it and never touches Vivaldi's own settings.
+visible in the browser. Use `scripts/check.sh --no-vivaldi` if Vivaldi's
+preferences are unavailable. `uninstall.sh` keeps the CSS directory when other
+mods live in it and never touches Vivaldi's own settings. Disable “Vivaldi” in
+Noctalia and clear Vivaldi's Custom UI Modifications setting if you no longer
+need them.
 
 ## Limitations
 
