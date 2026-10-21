@@ -473,6 +473,13 @@ body,
   color: var(--noctalia-on-hover) !important;
 }
 
+/* Status bar SVGs can keep the bar's light icon colour even after the button
+ * gets its hover colour. Set the SVG's own colour while preserving Vivaldi's
+ * path fills, including the empty areas of outline icons. */
+#browser .toolbar-statusbar .button-toolbar > button:hover svg {
+  color: var(--noctalia-on-hover) !important;
+}
+
 #browser .button-toolbar > button:active {
   background-color: var(--noctalia-bg-container) !important;
   color: var(--noctalia-fg) !important;
@@ -480,6 +487,14 @@ body,
 
 #browser .button-toolbar > button.button-pressed {
   background-color: var(--noctalia-accent) !important;
+  color: var(--noctalia-on-accent) !important;
+}
+
+#browser .toolbar-statusbar .button-toolbar > button:active svg {
+  color: var(--noctalia-fg) !important;
+}
+
+#browser .toolbar-statusbar .button-toolbar > button.button-pressed svg {
   color: var(--noctalia-on-accent) !important;
 }
 
